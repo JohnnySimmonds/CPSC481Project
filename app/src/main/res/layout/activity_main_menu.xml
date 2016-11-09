@@ -28,7 +28,8 @@
         android:layout_marginTop="43dp"
         android:layout_below="@+id/favorites"
         android:layout_alignRight="@+id/activityFinder"
-        android:layout_alignEnd="@+id/activityFinder" />
+        android:layout_alignEnd="@+id/activityFinder"
+        android:onClick="beginCreateActivity"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
         android:text="Activity Finder"
         android:textSize="14pt"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="beginActivityFinder"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -48,7 +50,7 @@
         android:textSize="14pt"
         android:layout_below="@+id/activityFinder"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
-
+        android:layout_marginTop="35dp"
+        android:onClick="beginFavorites"/>
 
 </RelativeLayout>
