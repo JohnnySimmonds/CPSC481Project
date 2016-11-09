@@ -10,4 +10,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.adsulliv.cpsc481project.Favorites">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favorited Activities"
+        android:textSize="20pt"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/favoritesTitle"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favoritesTitle"
+        android:text="Hiking"
+        android:textSize="10pt"
+        android:id="@+id/category_hiking"
+        />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_hiking"
+        />
+
 </RelativeLayout>
