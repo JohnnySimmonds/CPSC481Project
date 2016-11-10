@@ -16,10 +16,16 @@ public class Favorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-        LinearLayout ll = (LinearLayout)findViewById(R.id.firstRow);
+        LinearLayout ll1 = (LinearLayout)findViewById(R.id.firstRow);
+        roundImages(ll1);
+        LinearLayout ll2 = (LinearLayout)findViewById(R.id.secondRow);
+        roundImages(ll2);
+    }
+
+    public void roundImages(LinearLayout ll) {
         final int childCount = ll.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            imageView = (ImageView)ll.getChildAt(i);
+            imageView = (ImageView) ll.getChildAt(i);
 
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jack);
             roundImage = new RoundImage(bitmap);
