@@ -50,4 +50,12 @@
         android:layout_marginRight="14dp"
         android:layout_marginEnd="14dp" />
 
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/dummy"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/camera" />
+
 </RelativeLayout>
