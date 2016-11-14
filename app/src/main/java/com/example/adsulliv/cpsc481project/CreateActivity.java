@@ -54,6 +54,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
 
                 }
             }
+            break;
             case R.id.gallery:
             {
                 intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -63,6 +64,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                     startActivityForResult(intent, MY_REQUEST_GALLERY); //view gallery
                 }
             }
+            break;
         }
     }
 
