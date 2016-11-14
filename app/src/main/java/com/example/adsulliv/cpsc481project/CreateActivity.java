@@ -79,6 +79,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ImageView pic=null;
         /* Store the photo taken from the camera as a bitmap to be displayed on screen*/
+        if (resultCode == RESULT_CANCELED)
+            return;
+
         if (requestCode == MY_REQUEST_CAMERA) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -87,11 +90,10 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             loadImageFromStorage(saveToInternalStorage(imageBitmap));
         }
         /* Store the photo taken from the gallery as a bitmap to be displayed on screen*/
-        else if(requestCode == MY_REQUEST_GALLERY)
-        {
+        else if(requestCode == MY_REQUEST_GALLERY) {
             Uri selectedImage = data.getData();
+            
             try {
-
                 Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 pic = (ImageView) findViewById(R.id.camImg);
                 pic.setImageBitmap(bm);
@@ -99,7 +101,6 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
