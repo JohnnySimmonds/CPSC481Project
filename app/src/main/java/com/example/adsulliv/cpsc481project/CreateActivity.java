@@ -1,9 +1,12 @@
 package com.example.adsulliv.cpsc481project;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -14,6 +17,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 
@@ -77,6 +84,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             pic = (ImageView) findViewById(R.id.camImg);
             pic.setImageBitmap(imageBitmap);
+            loadImageFromStorage(saveToInternalStorage(imageBitmap));
         }
         /* Store the photo taken from the gallery as a bitmap to be displayed on screen*/
         else if(requestCode == MY_REQUEST_GALLERY)
@@ -87,6 +95,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                 Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 pic = (ImageView) findViewById(R.id.camImg);
                 pic.setImageBitmap(bm);
+                loadImageFromStorage(saveToInternalStorage(bm));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -94,5 +103,55 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * Save the image as a bitmap in a local directory.
+     * @param bitmapImage from camera or gallery.
+     * @return imageDir path
+     */
+    private String saveToInternalStorage(Bitmap bitmapImage) {
+        // Get the current context of the application - i.e. the path it will use for creating the dir.
+        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+
+        // Create the directory to save the image, named imageDir.
+        File directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE);
+
+        // Give the image it's name.
+        File mypath = new File(directory, "activity.jpg");
+
+        FileOutputStream outputStream = null;
+
+        try {
+            outputStream = new FileOutputStream(mypath);
+
+            // Compress the bitmap to write the image to the output stream.
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+
+    /**
+     * Load the image from imageDir.
+     * @param path to imageDir.
+     */
+    private void loadImageFromStorage(String path) {
+        try {
+            File file = new File(path, "activity.jpg");
+            Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
+            ImageView imageView = (ImageView)findViewById(R.id.dummy);
+            imageView.setImageBitmap(bitmap);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
