@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CPSC481Project</string>
+    <string name="leftArrow"><![CDATA[<--]]></string>
+    <string name="rightArrow"><![CDATA[-->]]></string>
 </resources>
