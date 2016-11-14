@@ -10,4 +10,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.adsulliv.cpsc481project.CreateActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25pt"
+        android:text="Create Activity"
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/camImg"
+        android:visibility="visible"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/camera"
+        android:text="Take Photo"
+        android:onClick="onClick"
+        android:layout_below="@+id/camImg"
+        android:layout_alignLeft="@+id/camImg"
+        android:layout_alignStart="@+id/camImg" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gallery"
+        android:text="Gallery"
+        android:onClick="onClick"
+        android:layout_below="@+id/camImg"
+        android:layout_alignRight="@+id/camImg"
+        android:layout_alignEnd="@+id/camImg"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/dummy"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/camera" />
+
 </RelativeLayout>
