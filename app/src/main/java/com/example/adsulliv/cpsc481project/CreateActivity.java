@@ -13,9 +13,12 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,10 +47,25 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         Button camBut = (Button) findViewById(R.id.camera);
         camBut.setOnClickListener(CreateActivity.this);
 
+        /*
+        EditText editText = (EditText) findViewById(R.id.description);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                TextView description = (TextView) findViewById(R.id.test);
+                description.setText(v.getText());
+
+                return false;
+            }
+        });
+        */
+
     }
 
     /*open camera when button is pressed*/
-
+    public static int index = 0; // way of organizing images to be accessed later
     public void onClick(View view) {
         Intent intent;
         switch(view.getId()) {
@@ -87,6 +105,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             pic = (ImageView) findViewById(R.id.camImg);
             pic.setImageBitmap(imageBitmap);
+            pic.setVisibility(View.VISIBLE);
             loadImageFromStorage(saveToInternalStorage(imageBitmap));
         }
         /* Store the photo taken from the gallery as a bitmap to be displayed on screen*/
@@ -97,6 +116,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                 Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 pic = (ImageView) findViewById(R.id.camImg);
                 pic.setImageBitmap(bm);
+                pic.setVisibility(View.VISIBLE);
                 loadImageFromStorage(saveToInternalStorage(bm));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -117,8 +137,8 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         File directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE);
 
         // Give the image it's name.
-        File mypath = new File(directory, "activity.jpg");
-
+        File mypath = new File(directory, "activity" + index + ".jpg");
+        index++;
         FileOutputStream outputStream = null;
 
         try {
@@ -145,7 +165,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void loadImageFromStorage(String path) {
         try {
-            File file = new File(path, "activity.jpg");
+            File file = new File(path, "activity" + index-- + ".jpg");
             Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
             ImageView imageView = (ImageView)findViewById(R.id.dummy);
             imageView.setImageBitmap(bitmap);
