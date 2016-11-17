@@ -64,20 +64,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         info = (EditText) findViewById(R.id.description);
         activity = (EditText) findViewById(R.id.activity);
         price = (EditText) findViewById(R.id.price);
-        /*
-        EditText editText = (EditText) findViewById(R.id.description);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener()
-        {
 
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                TextView description = (TextView) findViewById(R.id.test);
-                description.setText(v.getText());
-
-                return false;
-            }
-        });
-        */
 
     }
 
@@ -100,7 +87,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.gallery:
             {
                 intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-               // intent.setType("image/*"); dont think this is needed
+
                 if (intent.resolveActivity(getPackageManager()) != null) {
 
                     startActivityForResult(intent, MY_REQUEST_GALLERY); //view gallery
@@ -110,17 +97,20 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             /* when activity is posted save to file and clear all fields*/
             case R.id.postActivity:
             {
+                if(imageBitmap != null) {
+                    pic.setVisibility(View.VISIBLE);
+                    loadImageFromStorage(saveToInternalStorage(imageBitmap));
 
-                pic.setVisibility(View.VISIBLE);
-                loadImageFromStorage(saveToInternalStorage(imageBitmap));
+                    readFile();
 
-                readFile();
+                    imageBitmap = null;
+                    pic.setImageBitmap(null);
+                    pic.setVisibility(View.INVISIBLE);
+                    info.setText(null);
+                    activity.setText(null);
+                    price.setText(null);
+                }
 
-                pic.setImageBitmap(null);
-                pic.setVisibility(View.INVISIBLE);
-                info.setText(null);
-                activity.setText(null);
-                price.setText(null);
             }
             break;
             default:
@@ -136,18 +126,50 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
 
         try {
 
-            String testString = "";
+            String infoString = "";
+            String priceString = "";
+            String actString = "";
+            char input;
+            int count;
             FileInputStream instream = new FileInputStream(file);
+            //reads and parses the string order  image->activity->info->price
             if (instream != null) {
                 Bitmap bitmap = BitmapFactory.decodeStream(instream);
-                while(instream.available() > 0)
+                count = instream.available();
+
+                while(count > 0)
                 {
+                    input = (char) instream.read();
+                    count--;
+                    while( input != '\n') {
 
+                        actString += Character.toString(input); //gets one char
+                        input = (char) instream.read();
+                        count--;
 
-                    testString += Character.toString((char)instream.read()); //gets one char
+                    }
+                    //instream.getChannel();
+                    input = (char)instream.read();
+                    count--;
+                    while( input != '\n') {
+
+                        infoString += Character.toString(input); //gets one char
+                        input = (char) instream.read();
+                        count--;
+                    }
+                    //instream.getChannel();
+                    input = (char)instream.read();
+                    count--;
+                    while( input != '\n') {
+
+                        priceString += Character.toString(input); //gets one char
+                        input = (char) instream.read();
+                        count--;
+                    }
+
 
                 }
-                test.setText(testString);
+                test.setText(infoString);
             }
             instream.close();
         }catch(Exception e)
@@ -156,6 +178,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         }
         //----------------------------------------------------------------------------------
     }
+
     /*stores the image data from the startActivityForResult intent in the imageview so that it can be displayed on screen*/
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ImageView pic=null;
@@ -208,9 +231,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
 
             // Compress the bitmap to write the image to the output stream.
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            outputStream.write(info.getText().toString().getBytes()); //stores the string in info into byte to be accessed later
-            outputStream.write(activity.getText().toString().getBytes());//stores the string in activity into byte to be accessed later
-            outputStream.write(price.getText().toString().getBytes());//stores the string in price into byte to be accessed later
+            outputStream.write((activity.getText().toString()+ '\n').getBytes());//stores the string in activity into byte to be accessed later
+            outputStream.write((info.getText().toString() + '\n').getBytes()); //stores the string in info into byte to be accessed later
+            outputStream.write((price.getText().toString()+ '\n').getBytes());//stores the string in price into byte to be accessed later
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
