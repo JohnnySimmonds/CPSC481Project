@@ -2,22 +2,40 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.adsulliv.cpsc481project">
 
+
+
+<!--  potential stuff needed to read and write images
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!-- Camera permission stuff-->
+        <uses-feature android:name="android.hardware.camera"
+            android:required="true"
+            android:exported="true"/>
+        <uses-permission android:name="android.permission.CAMERA"
+            android:exported="true"/>
+        <!-- Permissions for reading and writing to the phone (for gallery stuff)-->
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+            android:maxSdkVersion="18"/>
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
         <activity android:name=".MainMenu">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"
+                    android:exported="true"/>
+                <category android:name="android.intent.category.LAUNCHER"
+                    android:exported="true"/>
             </intent-filter>
         </activity>
         <activity android:name=".ActivityFinder" />
         <activity android:name=".Favorites" />
-        <activity android:name=".CreateActivity"></activity>
+        <activity android:name=".CreateActivity"/>
+
+
     </application>
 
 </manifest>
