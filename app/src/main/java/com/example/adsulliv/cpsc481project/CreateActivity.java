@@ -169,7 +169,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 }
-                test.setText(infoString);
+                //test.setText(infoString);//too see if text is working for each string
             }
             instream.close();
         }catch(Exception e)
@@ -257,7 +257,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
             ImageView imageView = (ImageView)findViewById(R.id.dummy);
             imageView.setImageBitmap(bitmap);
-            imageView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.INVISIBLE); //change to visible to see file image for testing or for displaying in a different context
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

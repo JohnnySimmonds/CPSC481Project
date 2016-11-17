@@ -139,7 +139,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/test"
         android:textSize="25dp"
-        android:text="TEST ME PLZ"
+        android:text=""
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
