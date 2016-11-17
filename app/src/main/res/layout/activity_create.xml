@@ -20,14 +20,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:id="@+id/dummy"
-        android:visibility="visible"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/camera" />
-
     <TextView
         android:layout_width="25pt"
         android:layout_height="25pt"
@@ -92,7 +84,7 @@
         android:layout_alignParentEnd="true" />
 
     <ImageView
-        android:layout_width="325dp"
+        android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/camImg"
         android:background="#000000"
@@ -130,5 +122,26 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/dummy"
+        android:background="#000000"
+        android:visibility="invisible"
+        android:layout_above="@+id/description"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- Test to see if text is saved to file properly -->
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/test"
+        android:textSize="25dp"
+        android:text="TEST ME PLZ"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
