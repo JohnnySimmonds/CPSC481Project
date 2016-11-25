@@ -2,13 +2,10 @@ package com.example.adsulliv.cpsc481project;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.view.ViewGroup.MarginLayoutParams;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,8 +27,7 @@ public class Favorites extends AppCompatActivity {
         roundImages(firstLayout);
 
         LinearLayout secondLayout = (LinearLayout)findViewById(R.id.secondRow);
-        loadImages(secondLayout);
-        roundImages(secondLayout);
+        roundJacks(secondLayout);
     }
 
     /**
@@ -66,6 +62,18 @@ public class Favorites extends AppCompatActivity {
         }
 
         index = 0;
+    }
+
+    public void roundJacks(LinearLayout linearLayout) {
+        final int childCount = linearLayout.getChildCount();
+
+        for (int i = 0; i < childCount; i++) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.squareski);
+            imageView = (ImageView) linearLayout.getChildAt(i);
+            roundImage = new RoundImage(bitmap);
+            imageView.setImageDrawable(roundImage);
+        }
+
     }
 
     /**
