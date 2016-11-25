@@ -1,9 +1,13 @@
 package com.example.adsulliv.cpsc481project;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -55,6 +59,11 @@ public class Favorites extends AppCompatActivity {
             image.setLayoutParams(params);
             image.getLayoutParams().height = 250;
             image.getLayoutParams().width = 250;
+            image.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view){
+                    beginActivityDetail(view);
+                }
+            });
 
             linearLayout.addView(image);
         }
@@ -108,5 +117,14 @@ public class Favorites extends AppCompatActivity {
         }
 
         return bitmap;
+    }
+
+    /**
+     * Begin the activity detail page.
+     * @param view for current context.
+     */
+    public void beginActivityDetail(View view){
+        Intent intent = new Intent(this, ActivityDetail.class);
+        startActivity(intent);
     }
 }
