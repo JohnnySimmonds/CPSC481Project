@@ -23,33 +23,25 @@
 
     <!-- the central image currently shown in the activity finder -->
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:scaleType="centerCrop"
         android:src="@drawable/stockhike1"
         android:id="@+id/activityImage"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginBottom="31dp"
-        android:src="@drawable/redx"
-        android:id="@+id/redx"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/activityFinderTitle"
-        android:layout_alignStart="@+id/activityFinderTitle" />
-
-    <ImageView
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:src="@drawable/greencheck"
-        android:id="@+id/greencheck"
-        android:layout_alignBaseline="@+id/redx"
-        android:layout_alignBottom="@+id/redx"
+        android:id="@+id/buttonGreenCheck"
+        android:layout_alignBaseline="@+id/buttonRedX"
+        android:layout_alignBottom="@+id/buttonRedX"
         android:layout_alignRight="@+id/activityFinderTitle"
-        android:layout_alignEnd="@+id/activityFinderTitle" />
+        android:layout_alignEnd="@+id/activityFinderTitle"
+        style="?android:attr/borderlessButtonStyle"
+        android:scaleType="fitCenter"/>
 
     <Button
         android:layout_width="90dp"
@@ -69,5 +61,16 @@
         android:layout_alignBottom="@+id/buttonBrowseRight"
         android:layout_toLeftOf="@+id/activityImage"
         android:layout_toStartOf="@+id/activityImage" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/redx"
+        android:id="@+id/buttonRedX"
+        style="?android:attr/borderlessButtonStyle"
+        android:scaleType="fitCenter"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/buttonGreenCheck"
+        android:layout_toStartOf="@+id/buttonGreenCheck" />
 
 </RelativeLayout>
