@@ -57,6 +57,11 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
+        // Get the current context of the application - i.e. the path it will use for creating the dir.
+        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+        // Create the directory to save the image, named imageDir.
+        directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE);
+
         Button camBut = (Button) findViewById(R.id.camera);
         camBut.setOnClickListener(CreateActivity.this);
 
@@ -64,8 +69,6 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         info = (EditText) findViewById(R.id.description);
         activity = (EditText) findViewById(R.id.activity);
         price = (EditText) findViewById(R.id.price);
-
-
     }
 
     /*open camera when button is pressed*/
@@ -122,7 +125,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         //----------------------------------------------------------------------------------
                //Reads from a file and from all text fields.
         TextView test = (TextView) findViewById(R.id.test);
-        File file = new File(directory.getAbsolutePath(), "/activity" + --index + ".jpg");
+
+        int temp = index - 1;
+        File file = new File(directory.getAbsolutePath(), "/activity" + temp + ".jpg");
 
         try {
 
@@ -215,11 +220,13 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
      * @return imageDir path
      */
     private String saveToInternalStorage(Bitmap bitmapImage) {
-        // Get the current context of the application - i.e. the path it will use for creating the dir.
-        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+//        // Get the current context of the application - i.e. the path it will use for creating the dir.
+//        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+//
+//        // Create the directory to save the image, named imageDir.
+//        directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE);
 
-        // Create the directory to save the image, named imageDir.
-        directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE);
+        System.out.println(directory.getAbsolutePath());
 
         // Give the image it's name.
         File mypath = new File(directory, "activity" + index + ".jpg");
@@ -252,8 +259,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void loadImageFromStorage(String path) {
         try {
-            File file = new File(path, "activity" + --index + ".jpg");
-            index++;
+            int temp = index - 1;
+            File file = new File(path, "activity" + temp + ".jpg");
+            //index++;
             Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
             ImageView imageView = (ImageView)findViewById(R.id.dummy);
             imageView.setImageBitmap(bitmap);
