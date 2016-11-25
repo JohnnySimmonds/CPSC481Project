@@ -27,7 +27,19 @@ public class Favorites extends AppCompatActivity {
         roundImages(firstLayout);
 
         LinearLayout secondLayout = (LinearLayout)findViewById(R.id.secondRow);
-        roundJacks(secondLayout);
+        roundJacks(secondLayout, R.drawable.squareski);
+
+        LinearLayout thirdLayout = (LinearLayout)findViewById(R.id.thirdRow);
+        roundJacks(thirdLayout, R.drawable.rafting);
+
+        LinearLayout fourthLayout = (LinearLayout)findViewById(R.id.fourthRow);
+        roundJacks(fourthLayout, R.drawable.rockclimbing);
+
+        LinearLayout fifthLayout = (LinearLayout)findViewById(R.id.fifthRow);
+        roundJacks(fifthLayout, R.drawable.scubadiving);
+
+        LinearLayout sixthLayout = (LinearLayout)findViewById(R.id.sixthRow);
+        roundJacks(sixthLayout, R.drawable.skydiving);
     }
 
     /**
@@ -64,11 +76,11 @@ public class Favorites extends AppCompatActivity {
         index = 0;
     }
 
-    public void roundJacks(LinearLayout linearLayout) {
+    public void roundJacks(LinearLayout linearLayout, int imageDrawable) {
         final int childCount = linearLayout.getChildCount();
 
         for (int i = 0; i < childCount; i++) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.squareski);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageDrawable);
             imageView = (ImageView) linearLayout.getChildAt(i);
             roundImage = new RoundImage(bitmap);
             imageView.setImageDrawable(roundImage);
