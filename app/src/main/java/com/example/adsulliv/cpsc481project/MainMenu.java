@@ -26,7 +26,5 @@ public class MainMenu extends AppCompatActivity {
     public void beginActivityFinder(View view){
         Intent intent = new Intent(this, ActivityFinder.class);
         startActivity(intent);
-
     }
-
 }
