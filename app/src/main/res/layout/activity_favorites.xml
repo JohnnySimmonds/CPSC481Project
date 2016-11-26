@@ -34,6 +34,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@id/favorites_title"
                 android:text="Hiking"
+                android:textSize="10pt"
                 android:id="@+id/category_hiking"/>
             <HorizontalScrollView
                 android:layout_width="wrap_content"
