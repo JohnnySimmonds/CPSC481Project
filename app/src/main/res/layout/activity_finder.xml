@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.adsulliv.cpsc481project.ActivityFinder">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +25,6 @@
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/stockhike1"
         android:id="@+id/activityImage"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
