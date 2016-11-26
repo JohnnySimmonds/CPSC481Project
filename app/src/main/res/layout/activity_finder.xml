@@ -26,7 +26,6 @@
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/stockhike1"
         android:id="@+id/activityImage"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />

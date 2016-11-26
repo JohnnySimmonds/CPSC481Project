@@ -31,6 +31,10 @@ public class ActivityFinder extends AppCompatActivity {
 
         loadImages();       //grab images to show in the activity finder
 
+        ImageView theImage = (ImageView) findViewById(R.id.activityImage);  //get instance of outdoor activity image
+        theImage.setImageBitmap(activityImages.get(currentIndex));    //next outdoor activity image
+
+
         //File mypath = new File(directory, "activity" + index + ".jpg");
 
         Button buttonBrowseLeft = (Button) findViewById(R.id.buttonBrowseLeft);  //get instance of left arrow button
