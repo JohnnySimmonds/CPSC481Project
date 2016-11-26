@@ -39,4 +39,13 @@
         android:layout_below="@id/price_view"
         android:textSize="10pt"
         android:id="@+id/info_view"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom = "true"
+        android:textSize="14pt"
+        android:background="#51b46d"
+        android:textColor="#FFF"
+        android:text="Join Activity"/>
 </RelativeLayout>
